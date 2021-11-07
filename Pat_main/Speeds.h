@@ -11,8 +11,9 @@ class Auto : public Speed
 public:
 	int get_rez() override
 	{
-		printf("Auto rez - running\n");
-		return(rand() % 20 + 30);
+		int speed = rand() % 20 + 30;
+		printf("Auto speed running\n");
+		return speed;
 	}
 };
 
@@ -21,8 +22,9 @@ class Walk : public Speed
 public:
 	int get_rez() override
 	{
-		printf("Walk rez - running\n");
-		return(rand() % 5 + 10);
+		int speed = rand() % 5 + 10;
+		printf("Walk speed running\n");
+		return speed;
 	}
 };
 
@@ -31,8 +33,9 @@ class Bicycle : public Speed
 public:
 	int get_rez() override
 	{
-		printf("Bicycle rez - running\n");
-		return(rand() % 10 + 20);
+		int speed = rand() % 10 + 20;
+		printf("Bicycle speed running\n");
+		return speed;
 	}
 
 };

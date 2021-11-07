@@ -5,7 +5,8 @@
 
 #include <cstring>
 
-class Special_Walk {
+class Special_Walk 
+{
 private:
     float speed, koef_power;
 
@@ -27,17 +28,22 @@ public:
     }
     ~Special_Walk() {}
 
-    int get_koef_power() 
+    float get_koef_power() 
     { 
         return koef_power;
     }
-    int get_speed()
+    float get_speed()
     {
         return koef_power * speed;
     }
     void set_Power(float p_koef_power)
     {
         koef_power = p_koef_power;
+    }
+    void start_special_Walk()
+    {
+        printf("Specail walk was created:\nspeed = %f,\tkoef_power - %f\n", get_speed(), get_koef_power());
+        printf("Created is successful!\n");
     }
 };
 #endif //Special_walk_h

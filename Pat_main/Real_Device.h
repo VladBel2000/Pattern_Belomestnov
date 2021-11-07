@@ -2,12 +2,15 @@
 #ifndef Real_Device_h
 #include "Device.h"
 #include "Speeds.h"
+#include "Speed.h"
 #include "Headers.h"
+#include "Iterable_collection.h"
 
 class Real_Device : public Device
 {
 private:
 	string type_Device;
+	vector <Speed*>* type_move;
 public:
 	Real_Device()
 	{
@@ -25,6 +28,7 @@ public:
 			speed = new Walk();
 		else if (strcmp(p_init.c_str(), (const char*)("Bicycle")) == 0)
 			speed = new Bicycle();
+		type_move = new vector<Speed*>();
 	}
 	void set_speed(string p_setter)
 	{

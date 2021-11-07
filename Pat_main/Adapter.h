@@ -6,7 +6,8 @@
 #include "Special_walk.h"
 #include "Device.h"
 
-class Adapter : public Device {
+class Adapter : public Device 
+{
 private:
     Special_Walk* adaptable;
     int initSpecial() 
@@ -37,4 +38,4 @@ public:
 
 };
 
-#endif //PATTERNS_ADAPTER_H
+#endif //Adapter_h
