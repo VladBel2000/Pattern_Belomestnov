@@ -17,6 +17,18 @@
 #include "Iterator.h"
 #include "Iterable_collection.h"
 #include "Device_for_iter.h"
+#include "Way.h"
+#include "builder.h"
+#include "way_builder.h"
+#include "find_way.h"
+#include "Clonable_Collection.h"
+#include "Navigator.h"
+#include "State.h"
+#include "States.cpp"
+#include "Write_users.h"
+#include "Visible_collection.h"
+
+
 
 
 
@@ -103,7 +115,6 @@ void test_Iterator()
 	Speed* speed_3 = new Bicycle();
 
 	Device_for_iter* dv1 = new Device_for_iter();
-	// Letter* letter = new Letter();
 	dv1->insert_type(speed_1);
 	dv1->insert_type(speed_2);
 	dv1->insert_type(speed_3);
@@ -114,8 +125,6 @@ void test_Iterator()
 	{
 		Speed* sp = iter->getCur();
 		sp->get_rez();
-		//printf("%d", sp->get_rez());
-		//printf("%s", sp->get_rez().c_str());
 	}
 	delete speed_1;
 	delete speed_2;
@@ -153,4 +162,84 @@ void testProxy()
 	printf("Proxy device: ");
 	proxyDevice->get_rez();
 }
+void testBuilder() 
+{
+	list<int>* list_number_node = new list<int>();
+	list_number_node->push_back(3);
+	list_number_node->push_back(100);
+	list_number_node->push_back(5);
 
+	cout << "Build way from builder:" << endl;
+	Way_builder* builder = new Way_builder();
+	builder->time(17);
+	builder->length(35);
+	builder->list_number_node(list_number_node);
+	Way* exampleWay = builder->build();
+	cout << exampleWay->toString();
+
+	cout << endl << "Build way from find_way:" << endl;
+	find_way& f_way = find_way::getInstance();
+	Way* way1 = f_way.make_need_way();
+	cout << way1->toString() << endl;
+
+	Way* way2 = f_way.make_all_way();
+	cout << way2->toString() << endl;
+
+	delete list_number_node;
+	delete builder;
+	delete way1;
+	delete way2;
+}
+
+void testPrototype() 
+{
+	cout << "Make a empty way: \n";
+	Way* way_1 = new Way();
+	cout << way_1->toString();
+
+	cout << "Clone this way" << endl;
+	Way* way_1_1 = way_1->clone();
+	cout << way_1_1->toString();
+
+	cout << "Set time in way_1" << endl;
+	way_1->setTime(49);
+	cout << "1) " << way_1->toString();
+	cout << "2) " << way_1_1->toString();
+
+	delete way_1;
+	delete way_1_1;
+}
+void testStates() 
+{
+	cout << "Create a Navigator and get result from him" << endl;
+	Navigator* navig1 = new Navigator();
+	navig1->printCurrentState();
+	int result = navig1->getResultsOfNavogator();
+
+	cout << endl << "Now change state to Is_working and try navigator to work" << endl;
+	navig1->changeStateTo(new Is_working);
+	result = navig1->getResultsOfNavogator();
+	
+}
+	
+void testStrategy() 
+{
+    cout << "Create speed based on auto:\n";
+	Speed* speed_1 = new Auto();
+    cout << speed_1->get_rez() << "\tCar" << endl;
+
+    cout << "Now change speed which based on the Walk:" << endl;
+	speed_1 = new Walk();
+    cout << speed_1->get_rez() << "\tWalk" << endl;
+}
+
+void testVisitor() {
+    cout << "Get a JSON from default letter + some added content" << endl;
+    find_way& find_w = find_way::getInstance();
+    Way* way = find_w.make_need_way();
+	way->addNode(6);
+	way->addNode(15);
+    Visitor* visitor = new Write_users();
+    string str = visitor->visit(way);
+    cout << "Our users: " << str << endl;
+}

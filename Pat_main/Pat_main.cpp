@@ -9,5 +9,5 @@
 
 int main()
 {
-	test_Iterator();
+	testStates();
 }
