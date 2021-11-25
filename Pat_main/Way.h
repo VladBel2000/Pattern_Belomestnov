@@ -5,11 +5,10 @@
 #define Way_h
 
 #include "Clonable_collection.h"
+#include "Visible_collection.h"
 
 
-using namespace std;
-
-class Way : public Clonable_Collection {
+class Way : public Vicible_collection, public Clonable_Collection{
 private:
     list<int>* list_number_node;
     int length;
@@ -60,6 +59,7 @@ public:
 
     const int& get_length() const { return length; }
 
+    string accept(Visitor* visitor) override { return visitor->visit(this); }
 };
 
 #endif //Way_h

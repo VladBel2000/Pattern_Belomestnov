@@ -5,13 +5,13 @@
 #define visitor_h
 
 
-#include "Navigator.h"
+#include "Way.h"
 
-class Navigator;
+class Way;
 
 class Visitor {
 public:
-    virtual std::string visit(Navigator* navigator) = 0;
+    virtual string visit(Way* way) = 0;
 };
 
 

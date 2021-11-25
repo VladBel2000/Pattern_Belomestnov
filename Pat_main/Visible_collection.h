@@ -1,14 +1,14 @@
 #pragma once
 #include "Headers.h"
 
-#ifndef Vicible_collection
-#define Vicible_collection
+#ifndef Vicible_collection_h
+#define Vicible_collection_h
 
 #include "Visitor.h"
 
 class Vicible_collection {
 public:
-    virtual std::string accept(Visitor* visitor) = 0;
+    virtual string accept(Visitor* visitor) = 0;
 };
 
 

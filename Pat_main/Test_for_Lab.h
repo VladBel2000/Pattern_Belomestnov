@@ -21,12 +21,16 @@
 #include "builder.h"
 #include "way_builder.h"
 #include "find_way.h"
-#include "Clonable_Collection.h"
+//#include "Clonable_Collection.h"
 #include "Navigator.h"
+
+
 #include "State.h"
-#include "States.cpp"
+#include "Init.h"
+#include "Ready.h"
+#include "Is_working.h"
 #include "Write_users.h"
-#include "Visible_collection.h"
+//#include "Visible_collection.h"
 
 
 
@@ -211,7 +215,7 @@ void testPrototype()
 }
 void testStates() 
 {
-	cout << "Create a Navigator and get result from him" << endl;
+	cout << "Create a Navigator and get result from him" << endl << endl;
 	Navigator* navig1 = new Navigator();
 	navig1->printCurrentState();
 	int result = navig1->getResultsOfNavogator();
@@ -221,7 +225,7 @@ void testStates()
 	result = navig1->getResultsOfNavogator();
 	
 }
-	
+
 void testStrategy() 
 {
     cout << "Create speed based on auto:\n";
@@ -231,15 +235,16 @@ void testStrategy()
     cout << "Now change speed which based on the Walk:" << endl;
 	speed_1 = new Walk();
     cout << speed_1->get_rez() << "\tWalk" << endl;
-}
+	}
 
 void testVisitor() {
-    cout << "Get a JSON from default letter + some added content" << endl;
+    cout << "Get a default way and add some nodes" << endl;
     find_way& find_w = find_way::getInstance();
     Way* way = find_w.make_need_way();
 	way->addNode(6);
 	way->addNode(15);
+	way->addNode(17);
     Visitor* visitor = new Write_users();
     string str = visitor->visit(way);
-    cout << "Our users: " << str << endl;
+    cout << "Our nodes: " << str << endl;
 }

@@ -16,19 +16,19 @@ bool Init::stop(Navigator* navigator) {
 }
 
 bool Ready::start(Navigator* navigator) {
-    std::cout << "Start of working a Navigator" << std::endl;
+    std::cout << "Navigator is Ready" << std::endl;
     navigator->changeStateTo(new Is_working);
     return true;
 }
 
 bool Ready::stop(Navigator* navigator) {
-    std::cout << "Error: could not stop a Navigator" << std::endl;
+    std::cout << "Navigator is not Ready" << std::endl;
     return false;
 }
 
 bool Is_working::start(Navigator* navigator) {
-    std::cout << "Error: could not start a Navigator" << std::endl;
-    return false;
+    std::cout << "Start of working is successes" << std::endl;
+    return true;
 }
 
 bool Is_working::stop(Navigator* navigator) {

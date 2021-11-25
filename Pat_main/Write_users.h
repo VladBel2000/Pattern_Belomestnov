@@ -13,15 +13,15 @@ inline bool instanceof(const T* ptr) {
 
 class Write_users : public Visitor {
 public:
-    string visit(Navigator* navigator) override 
+    string visit(Way* way) override
     {
         string result = "";
-        list<string>* list_user = navigator->get_user();
-        result += "\"List of users\":[";
-        for (auto now_user : *list_user) {
-            result += "\"" + now_user + "\",";
+        list<int>* list_node = way->get_list_number_node();
+        result += "\"List of node\":[";
+        for (auto str : *list_node) {
+            result += "\"" + to_string(str) + "\",";
         }
-        result.pop_back(); result += "],";
+        result.pop_back(); result += "]";
         return result;
     }
 
